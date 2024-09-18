@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', credentialsId: 'SamuliLam', url: 'https://github.com/SamuliLam/OP1_TempConverter.git'
+                git branch: 'master', credentialsId: 'f20fa5db-cb60-4b5d-9eab-1375c94a18c7', url: 'https://github.com/SamuliLam/OP1_TempConverter.git'
             }
         }
         stage('Build') {
