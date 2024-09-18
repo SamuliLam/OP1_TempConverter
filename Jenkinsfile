@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         PATH = "${env.PATH};C:\\Windows\\System32" // Update the PATH to include the directory of cmd.exe
-        GIT_CREDENTIALS = credentials('SamuliLam')
+        GIT_CREDENTIALS = credentials('f20fa5db-cb60-4b5d-9eab-1375c94a18c7')
     }
     stages {
         stage('Checkout') {
