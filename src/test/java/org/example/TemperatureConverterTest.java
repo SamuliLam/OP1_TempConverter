@@ -28,4 +28,18 @@ public class TemperatureConverterTest {
         assertFalse(converter.isExtremeTemperature(20));
         assertTrue(converter.isExtremeTemperature(60));
     }
+
+    @Test
+    public void testKelvinToFah() {
+        assertEquals(32.0, converter.kelvinToFah(273.15), 0.01);
+        assertEquals(212.0, converter.kelvinToFah(373.15), 0.01);
+        assertEquals(-40.0, converter.kelvinToFah(233.15), 0.01);
+    }
+
+    @Test
+    public void testKelvinToCel() {
+        assertEquals(0.0, converter.kelvinToCel(273.15), 0.01);
+        assertEquals(100.0, converter.kelvinToCel(373.15), 0.01);
+        assertEquals(-40.0, converter.kelvinToCel(233.15), 0.01);
+    }
 }
