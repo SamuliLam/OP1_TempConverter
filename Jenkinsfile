@@ -1,4 +1,9 @@
 pipeline {
+
+    tools {
+        maven 'Maven'
+    }
+    
     agent any // IN THE LECTURE I WILL EXPLAIN THE SCRIPT AND THE WORKFLOW
     
     environment {
