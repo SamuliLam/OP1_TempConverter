@@ -1,34 +1,36 @@
 pipeline {
-    agent any
-
-    tools {
-        maven 'Maven'
-    }
+    agent any // IN THE LECTURE I WILL EXPLAIN THE SCRIPT AND THE WORKFLOW
+    
     environment {
-        PATH = "${env.PATH};C:\\Windows\\System32" // Update the PATH to include the directory of cmd.exe
-        GIT_CREDENTIALS = credentials('f20fa5db-cb60-4b5d-9eab-1375c94a18c7')
+        // Define Docker Hub credentials ID
+        DOCKERHUB_CREDENTIALS_ID = 'samulilam'
+        // Define Docker Hub repository name
+        DOCKERHUB_REPO = 'samulilam/fartocelkelvin'
+        // Define Docker image tag
+        DOCKER_IMAGE_TAG = 'latest'
     }
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', credentialsId: 'f20fa5db-cb60-4b5d-9eab-1375c94a18c7', url: 'https://github.com/SamuliLam/OP1_TempConverter.git'
+                // Checkout code from Git repository
+                git 'https://github.com/SamuliLam/OP1_TempConverter.git'
+            }
+        }  
+        stage('Build Docker Image') {
+            steps {
+                // Build Docker image
+                script {
+                    docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
+                }
             }
         }
-        stage('Build') {
+        stage('Push Docker Image to Docker Hub') {
             steps {
-                bat 'mvn clean install'
-            }
-        }
-        stage('Test') {
-            steps {
-                bat 'mvn test'
-            }
-            post {
-                success {
-                    // Publish JUnit test results
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    // Generate JaCoCo code coverage report
-                    jacoco(execPattern: '**/target/jacoco.exec')
+                // Push Docker image to Docker Hub
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS_ID) {
+                        docker.image("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}").push()
+                    }
                 }
             }
         }
