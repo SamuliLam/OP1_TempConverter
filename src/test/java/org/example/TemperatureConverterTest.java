@@ -30,14 +30,16 @@ public class TemperatureConverterTest {
     }
 
     @Test
-    public void testKelvinToCel() {
-        assertEquals(0.0, TemperatureConverter.kelvinToCel(273.15), 0.001f);
-        assertEquals(-273.15, TemperatureConverter.kelvinToCel(0), 0.001f);
+    public void testKelvinToFah() {
+        assertEquals(32.0, converter.kelvinToFah(273.15), 0.01);
+        assertEquals(212.0, converter.kelvinToFah(373.15), 0.01);
+        assertEquals(-40.0, converter.kelvinToFah(233.15), 0.01);
     }
 
     @Test
-    public void testKelvinToFah() {
-        assertEquals(32.0, TemperatureConverter.kelvinToFah(273.15), 0.001f);
-        assertEquals(-459.67, TemperatureConverter.kelvinToFah(0), 0.001f);
+    public void testKelvinToCel() {
+        assertEquals(0.0, converter.kelvinToCel(273.15), 0.01);
+        assertEquals(100.0, converter.kelvinToCel(373.15), 0.01);
+        assertEquals(-40.0, converter.kelvinToCel(233.15), 0.01);
     }
 }

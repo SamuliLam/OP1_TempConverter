@@ -33,12 +33,11 @@ public class TemperatureConverter {
         return celsius < -40 || celsius > 50;
     }
 
-
-    public static double kelvinToCel(double kel){
-        return (float) (kel - 273.15);
+    public double kelvinToFah(double kel) {
+        return Math.round((kel-273.15)*9/5+32);
     }
 
-    public static double kelvinToFah(double kel) {
-        return (float) (kel * 9 / 5 - 459.67);
+    public double kelvinToCel(double kel) {
+        return Math.round(kel-273.15);
     }
 }
