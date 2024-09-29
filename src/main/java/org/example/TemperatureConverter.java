@@ -40,4 +40,13 @@ public class TemperatureConverter {
     public double kelvinToCel(double kel) {
         return Math.round(kel-273.15);
     }
+
+    public static void main(String[] args) {
+        TemperatureConverter tempConverter = new TemperatureConverter();
+        System.out.println(tempConverter.fahrenheitToCelsius(32));
+        System.out.println(tempConverter.celsiusToFahrenheit(0));
+        System.out.println(tempConverter.isExtremeTemperature(100));
+        System.out.println(tempConverter.kelvinToCel(273.15));
+        System.out.println(tempConverter.kelvinToFah(273.15));
+    }
 }
