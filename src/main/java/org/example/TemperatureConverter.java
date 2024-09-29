@@ -34,7 +34,11 @@ public class TemperatureConverter {
     }
 
 
-    public static float kelvinToCel(float kel){
+    public static double kelvinToCel(double kel){
         return (float) (kel - 273.15);
+    }
+
+    public static double kelvinToFah(double kel) {
+        return (float) (kel * 9 / 5 - 459.67);
     }
 }
